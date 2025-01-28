@@ -19,6 +19,8 @@ const WhyWeExistDisplay = () => {
                     throw new Error('Failed to fetch content')
                 }
                 const data = await response.json()
+
+                console.log('data:', data)
                 setContent(data?.content || '')
             } catch (error) {
                 console.error('Error fetching content:', error)

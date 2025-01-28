@@ -8,11 +8,12 @@ export async function GET() {
     const content = await prisma.whyWeExistContent.findFirst({
       orderBy: { updatedAt: "desc" },
     });
+    console
     return NextResponse.json(content);
   } catch (error) {
     console.error("Error fetching content:", error);
     return NextResponse.json(
-      { error: "Error fetching content" },
+      { error: error },
       { status: 500 }
     );
   }
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Error updating content:", error);
     return NextResponse.json(
-      { error: "Error updating content" },
+      { error: error },
       { status: 500 }
     );
   }

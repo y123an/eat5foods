@@ -9,6 +9,8 @@ export default async function Page() {
             User: true
         }
     })
+
+   
     return (
         <main>
             <ProfileSection users={PlatformReviews.slice(0, 10)} />
