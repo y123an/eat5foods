@@ -7,7 +7,7 @@ import ShopHeader from "@/components/navigation/shop/shop-header"
 import FooterSection from '@/components/section/footer-section'
 import { PlaceholderImage, WhiteLogo } from "@/constants/images"
 import useCartStore from "@/hooks/use-cart"
-import { Category } from '@prisma/client'
+import { Category, Product } from '@prisma/client'
 import { Grid, Info, Menu, Phone, ShoppingCart, Star, User } from 'lucide-react'
 import { useSession } from "next-auth/react"
 import Image from "next/image"
@@ -16,10 +16,11 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 interface ShopLayoutProps {
     children: React.ReactNode
+    products: Product[],
     categories: Category[]
 }
 
-export default function ShopLayout({ children, categories }: ShopLayoutProps) {
+export default function ShopLayout({ children, products, categories }: ShopLayoutProps) {
     const { data: session } = useSession();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const { items: cartItems, toggleCart } = useCartStore();
@@ -58,7 +59,7 @@ export default function ShopLayout({ children, categories }: ShopLayoutProps) {
 
             {/* Sidebars and Overlays */}
             <CartSidebar />
-            <SearchOverlay categories={categories} />
+            <SearchOverlay products={products} categories={categories} />
 
             {/* Main Content */}
             <main className="flex-grow pt-16 md:pt-32 pb-20 md:pb-0">

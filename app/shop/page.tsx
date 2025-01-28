@@ -92,7 +92,7 @@ export default async function HomePage() {
         imageAlt: product.altText,
         bgColor: `bg-[${product.backgroundColor}]`,
         badgeColor: "bg-purple-800",
-        textColor: "#000000",
+        textColor: "#808080",
         features: [`${product.rating} Reviews`, `$${product.price.toFixed(2)}`],
         buttonLink: `/shop/${product.id}`,
     }));
@@ -117,8 +117,8 @@ export default async function HomePage() {
                 {formattedProducts.length > 0 && (
                     <div className="px-6">
                         <h2 className="text-2xl font-bold text-center my-7">Featured Products </h2>
-                        <ScrollArea className="w-full whitespace-nowrap">
-                            <div className="flex w-max space-x-4 p-4">
+                        <ScrollArea className="w-full flex justify-center whitespace-nowrap">
+                            <div className="flex w-max justify-center items-center space-x-4 p-4">
                                 {formattedProducts.map((product, index) => (
                                     <ProductCard key={product.id} product={product} />
                                 ))}

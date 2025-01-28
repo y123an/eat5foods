@@ -66,7 +66,7 @@ export default function ProductSection({ Products }: Props) {
                             <div
                                 key={product.id}
                                 style={{ backgroundColor: index % 2 === 0 ? "#DF3FAF" : "#491c2e" }}
-                                className="w-[200px] shadow-2xl rounded-t-xl flex-shrink-0 scroll-snap-align-start"
+                                className="w-[200px] shadow-2xl rounded-xl flex-shrink-0 scroll-snap-align-start"
                             >
                                 <div className="flex flex-col z-0 relative">
                                     <Image

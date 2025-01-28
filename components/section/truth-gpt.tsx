@@ -10,7 +10,7 @@ export default function TruthGptSection() {
 
         {
             content: (
-                <section className="flex flex-col items-center bg-[#000000] justify-between md:flex-row ">
+                <section className="flex flex-col items-center bg-[#000000] justify-between h-[70vh] md:flex-row ">
                     <div className="flex flex-col p-6 text-center space-y-7 mx-auto ">
                         <h1 className="text-4xl md:text-6xl font-extrabold text-white flex items-center">Truth <AirplayIcon className="text-purple-600 h-16 w-16 mx-2" /> GPT</h1>
                         <p className="text-xl md:text-2xl text-white">The whole truth of Foods & Fitness  </p>
@@ -23,7 +23,7 @@ export default function TruthGptSection() {
         },
         {
             content: (
-                <div className="flex flex-col md:flex-row bg-[#f0a5a7] justify-between">
+                <div className="flex flex-col md:flex-row bg-[#f0a5a7] h-[70vh] justify-between">
                     <Image
                         src={Hero4Image}
                         width={600}
@@ -58,7 +58,7 @@ export default function TruthGptSection() {
         },
         {
             content: (
-                <div className="flex flex-col md:flex-row justify-between bg-[#bca9a1]">
+                <div className="flex flex-col md:flex-row justify-between h-[70vh] bg-[#bca9a1]">
                     <div className="space-y-4 p-6 flex-col ">
                         <h2 className="text-4xl font-bold tracking-tight">Introducing</h2>
                         <h1 className="text-xl md:text-5xl flex-1 font-bold">SINGLE  SERVE SACHET</h1>

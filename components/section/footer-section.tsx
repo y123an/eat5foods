@@ -6,8 +6,8 @@ import { FaBullhorn, FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from 'reac
 
 const FooterSection = () => {
     return (
-        <footer className="bg-[#1b1b1b] text-white px-8 md:px-24 pt-6 pb-24">
-            <div className="flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-10">
+        <footer className="bg-[#1b1b1b] text-white flex justify-center flex-col items-center  px-8 md:px-24 pt-6 pb-10">
+            <div className="flex flex-col md:flex-row space-y-10 md:space-y-0 md:space-x-10 border-b pt-4 pb-10 border-gray-50">
                 {/* Logo and Newsletter Section */}
                 <div className="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5">
                     <div className='w-[100px] h-[100px] flex items-center justify-center rounded-full'>
@@ -74,7 +74,7 @@ const FooterSection = () => {
 
 
 
-            <hr className='h-[0.6px] bg-slate-200 my-8' />
+            <hr className='h-[0.6px] bg-slate-200 pt-2' />
             <p className="text-center text-sm">© 2023,Eat Five Foods . All rights reserved.</p>
         </footer>
     );

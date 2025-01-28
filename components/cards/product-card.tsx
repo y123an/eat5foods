@@ -81,7 +81,7 @@ export const ProductCard: React.FC<{ product: FormattedProduct }> = ({ product }
                         />
                     ))}
                 </div>
-                <p className="text-xs w-full text-wrap mx-2 sm:text-sm md:text-base">{product.description}</p>
+                <p className="text-xs w-full text-wrap mx-2 sm:text-sm md:text-base">{product.description.slice(0, 32)}...</p>
             </CardContent>
             <CardFooter className="flex justify-between p-4">
                 {quantity > 0 ? (

@@ -140,3 +140,27 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+
+export async function GET() {
+  try {
+    const products = await prisma.product.findMany({
+      include: {
+        image: true,              // Correct relation name
+        nutritionalFacts: true,   // Correct relation name
+        ingredients: true,        // Correct relation name
+        nonIngredient: true,      // Matches the singular relation name in schema
+        productVariation: true,   // Correct relation name
+      },
+    });
+    
+
+    return NextResponse.json({ success: true, products });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return NextResponse.json(
+      { success: false, error: "Error fetching products" },
+      { status: 500 }
+    );
+  }
+}

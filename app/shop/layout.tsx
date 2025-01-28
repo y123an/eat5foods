@@ -13,11 +13,13 @@ export default async function RootLayout({
 }: {
     children: React.ReactNode
 }) {
-    const categories = await prisma.category.findMany()
+    const product = await prisma.product.findMany()
+    const category = await prisma.category.findMany()
 
+    // console.log('ths',product);
     return (
 
-        <ShopLayout categories={categories}>
+        <ShopLayout products={product} categories={category}>
             {children}
         </ShopLayout>
 

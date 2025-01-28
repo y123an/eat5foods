@@ -3,27 +3,27 @@
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import useSearch from '@/hooks/use-search';
-import { Category } from '@prisma/client';
+import { Category, Product } from '@prisma/client';
 import Image from 'next/image';
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Link from 'next/link';
 
 type Props = {
     categories: Category[];
+    products: Product[];
 };
 
-export function SearchOverlay({ categories }: Props) {
+export function SearchOverlay({ categories, products }: Props) {
     const { isSearchOpen, toggleSearch } = useSearch();
     const [searchQuery, setSearchQuery] = useState<string>("");
 
     // Filter categories based on search query
-    const filteredCategories = categories.filter((category) =>
-        category.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredProducts = products?.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    console.log(products)
     return (
         <Sheet open={isSearchOpen} onOpenChange={toggleSearch}>
             <SheetContent side="right" className="w-full sm:max-w-md p-0 bg-background">
@@ -45,22 +45,22 @@ export function SearchOverlay({ categories }: Props) {
                 <ScrollArea className="h-[calc(100vh-140px)] p-6">
                     <h3 className="text-lg font-semibold mb-4">Top categories</h3>
                     <div className="grid grid-cols-2 gap-4">
-                        {filteredCategories.length > 0 ? (
-                            filteredCategories.slice(0, 11).map((category) => (
+                        {filteredProducts?.length > 0 ? (
+                            filteredProducts.slice(0, 11).map((product) => (
                                 <Link
-                                    href={`/shop/categories/${category.id}`}
-                                    key={category.id}
+                                    href={`/shop/categories/${product.id}`}
+                                    key={product.id}
                                     className="bg-secondary p-4 rounded-lg hover:bg-secondary/80 transition-colors"
                                 >
                                     <div className="aspect-square relative mb-2 overflow-hidden rounded-md">
-                                        <Image
+                                        {/* <Image
                                             src={category.image}
-                                            alt={category.name}
+                                            alt={product.name}
                                             fill
                                             className="object-cover"
-                                        />
+                                        /> */}
                                     </div>
-                                    <span className="font-semibold text-sm line-clamp-2">{category.name}</span>
+                                    <span className="font-semibold text-sm line-clamp-2">{product.name}</span>
                                 </Link>
                             ))
                         ) : (

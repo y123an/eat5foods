@@ -14,7 +14,7 @@ export default function HeroSection({ slidesData }: HeroSectionProps) {
     const router = useRouter();
     const slides = slidesData.map((slide) => ({
         content: (
-            <div className={`w-full flex flex-col-reverse md:flex-row justify-between ${slide.bgColor} p-4 md:p-12`}>
+            <div className={`w-full h-[70vh] flex flex-col-reverse md:flex-row justify-between ${slide.bgColor} p-4 md:p-12`}>
                 <div className="space-y-4 md:w-1/2">
                     {slide.badgeText && (
                         <div
