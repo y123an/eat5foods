@@ -283,6 +283,7 @@ model Testimonial {
   @@index([userId])
 }
 
+
 model NotificationBanner {
   id        String   @id @default(cuid())
   content   String

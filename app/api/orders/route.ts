@@ -12,6 +12,23 @@ interface Item {
   variationId?: string;
 }
 
+
+
+export async function GET() {
+  try {
+    const orders = await prisma.order.findMany();
+    
+
+    return NextResponse.json({ success: true, orders });
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return NextResponse.json(
+      { success: false, error: "Error fetching products" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   const user = await getCurrentUser();
   if (!user)

@@ -6,6 +6,7 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { FormattedProduct } from "@/types/product";
+import Link from "next/link";
 
 type Props = {
     Products: FormattedProduct[]
@@ -63,7 +64,8 @@ export default function ProductSection({ Products }: Props) {
 
 
                         {Products.map((product, index) => (
-                            <div
+                            <Link
+                                href={`/shop/${product.id}`}
                                 key={product.id}
                                 style={{ backgroundColor: index % 2 === 0 ? "#DF3FAF" : "#491c2e" }}
                                 className="w-[200px] shadow-2xl rounded-xl flex-shrink-0 scroll-snap-align-start"
@@ -87,15 +89,16 @@ export default function ProductSection({ Products }: Props) {
                                         New
                                     </Badge>
                                     <div className="flex justify-between p-2">
-                                        <h3 className="text-sm text-white">
+                                        <Link href={`/shop/${product.id}`}
+                                            className="text-sm text-white">
                                             {product.name}
-                                        </h3>
+                                        </Link>
                                         <div className="bg-[#be88a7] w-5 h-5 flex items-center justify-center rounded-full">
                                             <ArrowRight color="#fff" className="w-4 h-4" />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
