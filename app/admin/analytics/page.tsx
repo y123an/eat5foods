@@ -7,22 +7,32 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { format } from 'date-fns'; // For date formatting
 
+// Define the interface for the DataTable props
+interface DataTableProps {
+    data: any[];
+    columns: any[];
+    loading: boolean;
+}
+
 // Reusable DataTable Component
-const DataTable = ({ data, columns, loading }) => {
+const DataTable: React.FC<DataTableProps> = ({ data, columns, loading }) => {
     return (
-        <Table
-            dataSource={data}
-            columns={columns}
-            rowKey="id"
-            loading={loading}
-            pagination={{ pageSize: 5 }}
-            className="rounded-lg"
-        />
+        <div className="overflow-x-auto">
+            <Table
+                dataSource={data}
+                columns={columns}
+                rowKey="id"
+                loading={loading}
+                pagination={{ pageSize: 5 }}
+                className="rounded-lg"
+                scroll={{ x: true }} // Enable horizontal scrolling on small screens
+            />
+        </div>
     );
 };
 
 // Utility function to format createdAt
-const formatDate = (dateString) => {
+const formatDate = (dateString: string) => {
     return format(new Date(dateString), 'yyyy-MM-dd');
 };
 
@@ -79,7 +89,7 @@ export default function AnalyticsPage() {
     const getColumns = (title: string) => {
         const baseColumns = [
             { title: 'ID', dataIndex: 'id', key: 'id' },
-            { title: 'Date', dataIndex: 'createdAt', key: 'createdAt', render: (text) => formatDate(text) },
+            { title: 'Date', dataIndex: 'createdAt', key: 'createdAt', render: (text: string) => formatDate(text) },
         ];
 
         switch (title) {
@@ -106,14 +116,14 @@ export default function AnalyticsPage() {
     };
 
     return (
-        <div className="p-6 bg-gray-100 min-h-screen">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="p-4 md:p-6 bg-gray-100 min-h-screen">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Card
                     className="bg-white shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300"
                     onClick={() => showTable('Total Orders', data.orders)}
                 >
                     <div className="flex flex-col items-center justify-center p-4">
-                        <h2 className="text-xl font-semibold text-gray-800 mb-2">Total Orders</h2>
+                        <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Total Orders</h2>
                         <Button
                             icon={<DownloadOutlined />}
                             onClick={(e) => { e.stopPropagation(); handleDownload(data.orders, 'Total_Orders'); }}
@@ -129,7 +139,7 @@ export default function AnalyticsPage() {
                     onClick={() => showTable('Total Customers', data.customers)}
                 >
                     <div className="flex flex-col items-center justify-center p-4">
-                        <h2 className="text-xl font-semibold text-gray-800 mb-2">Total Customers</h2>
+                        <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Total Customers</h2>
                         <Button
                             icon={<DownloadOutlined />}
                             onClick={(e) => { e.stopPropagation(); handleDownload(data.customers, 'Total_Customers'); }}
@@ -145,7 +155,7 @@ export default function AnalyticsPage() {
                     onClick={() => showTable('Total Products', data.products)}
                 >
                     <div className="flex flex-col items-center justify-center p-4">
-                        <h2 className="text-xl font-semibold text-gray-800 mb-2">Total Products</h2>
+                        <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Total Products</h2>
                         <Button
                             icon={<DownloadOutlined />}
                             onClick={(e) => { e.stopPropagation(); handleDownload(data.products, 'Total_Products'); }}
@@ -159,7 +169,7 @@ export default function AnalyticsPage() {
                     className="bg-white shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300"
                 >
                     <div className="flex flex-col items-center justify-center p-4">
-                        <h2 className="text-xl font-semibold text-gray-800 mb-2">Download DB Backup</h2>
+                        <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-2">Download DB Backup</h2>
                         <Button
                             icon={<DownloadOutlined />}
                             className="flex items-center justify-center bg-yellow-500 text-white hover:bg-yellow-600"
@@ -173,7 +183,7 @@ export default function AnalyticsPage() {
             {/* Display the table below the cards */}
             {activeTable && (
                 <div className="mt-6">
-                    <h2 className="text-xl font-semibold text-gray-800 mb-4">{activeTable}</h2>
+                    <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-4">{activeTable}</h2>
                     <DataTable
                         data={tableData}
                         columns={getColumns(activeTable)}
