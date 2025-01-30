@@ -19,7 +19,7 @@ import { Button } from "@/components/ui/button"; // Import a button component fo
 
 
 
-export function ProductTable({ data }: any) {
+export function ProductTable({ data }) {
     const columns = [
         {
             accessorKey: "name",
