@@ -40,16 +40,16 @@ export default function UpdateRatingForm({
     const form = useForm<z.infer<typeof ReviewsRatingsSchema>>({
         resolver: zodResolver(ReviewsRatingsSchema),
         defaultValues: {
-            name: ratingInfo.author,
-            comment: ratingInfo.comment,
+            name: ratingInfo.author ?? "",
+            comment: ratingInfo.comment ?? "",
         },
     });
 
     useEffect(() => {
         // Set initial values from props
         form.reset({
-            name: ratingInfo.author,
-            comment: ratingInfo.comment,
+            name: ratingInfo.author ?? "",
+            comment: ratingInfo.comment ?? "",
         });
     }, [ratingInfo.author, ratingInfo.comment, form]);
 
@@ -68,12 +68,12 @@ export default function UpdateRatingForm({
         fileInputRef.current?.click();
     };
 
-    const onSubmit = async (values: z.infer<typeof CategorySchema>) => {
+    const onSubmit = async (values: z.infer<typeof ReviewsRatingsSchema>) => {
         setSubmitting(true);
         console.log(values);
         const formData = new FormData();
         formData.append("author", values.name);
-        formData.append("comment", values.comment);
+        formData.append("comment", values.comment );
 
         if (selectedImage) {
             formData.append("image", selectedImage);
