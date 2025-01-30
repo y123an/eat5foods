@@ -17,12 +17,10 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button"; // Import a button component for pagination controls
 
-interface ProductTableProps {
-    data: FormattedProduct[];
-}
 
-export function ProductTable({ data }: ProductTableProps) {
-    const columns: ColumnDef<FormattedProduct>[] = [
+
+export function ProductTable({ data }: any) {
+    const columns = [
         {
             accessorKey: "name",
             header: "Product Name",
